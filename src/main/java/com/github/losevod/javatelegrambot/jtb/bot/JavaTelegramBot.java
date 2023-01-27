@@ -2,6 +2,7 @@ package com.github.losevod.javatelegrambot.jtb.bot;
 
 import com.github.losevod.javatelegrambot.jtb.command.CommandContainer;
 import com.github.losevod.javatelegrambot.jtb.service.SendBotMessageServiceImpl;
+import com.github.losevod.javatelegrambot.jtb.service.TelegramUserService;
 import org.checkerframework.checker.units.qual.C;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -23,8 +24,8 @@ public class JavaTelegramBot extends TelegramLongPollingBot {
     @Value("${bot.token}")
     private String token;
     private final CommandContainer commandContainer;
-    public JavaTelegramBot() {
-        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this));
+    public JavaTelegramBot(TelegramUserService telegramUserService) {
+        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), telegramUserService);
     }
     @Override
     public void onUpdateReceived(Update update) {
