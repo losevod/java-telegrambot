@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
@@ -24,6 +25,15 @@ public class TelegramUserRepositoryIT {
     @Autowired
     private TelegramUserRepository telegramUserRepository;
 
+    @Sql(scripts = {"/sql/clearDbs.sql", "/sql/telegram_users.sql"})
+    @Test
+    public void shouldProperlyFindAllActiveUsers() {
+        //when
+        List<TelegramUser> users = telegramUserRepository.findAllByActiveTrue();
+
+        //then
+        Assertions.assertEquals(5, users.size());
+    }
     @Sql(scripts = {"/sql/clearDbs.sql"})
     @Test
     public void shouldProperlySaveTelegramUser() {
