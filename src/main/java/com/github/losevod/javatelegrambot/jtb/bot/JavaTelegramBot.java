@@ -1,6 +1,8 @@
 package com.github.losevod.javatelegrambot.jtb.bot;
 
 import com.github.losevod.javatelegrambot.jtb.command.CommandContainer;
+import com.github.losevod.javatelegrambot.jtb.javarushclient.JavaRushGroupClient;
+import com.github.losevod.javatelegrambot.jtb.service.GroupSubService;
 import com.github.losevod.javatelegrambot.jtb.service.SendBotMessageServiceImpl;
 import com.github.losevod.javatelegrambot.jtb.service.TelegramUserService;
 import org.checkerframework.checker.units.qual.C;
@@ -24,8 +26,8 @@ public class JavaTelegramBot extends TelegramLongPollingBot {
     @Value("${bot.token}")
     private String token;
     private final CommandContainer commandContainer;
-    public JavaTelegramBot(TelegramUserService telegramUserService) {
-        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), telegramUserService);
+    public JavaTelegramBot(TelegramUserService telegramUserService, JavaRushGroupClient groupClient, GroupSubService groupSubService) {
+        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), telegramUserService, groupClient, groupSubService);
     }
     @Override
     public void onUpdateReceived(Update update) {

@@ -2,6 +2,8 @@ package com.github.losevod.javatelegrambot.jtb.command;
 
 import com.github.losevod.javatelegrambot.jtb.service.SendBotMessageService;
 import com.github.losevod.javatelegrambot.jtb.service.TelegramUserService;
+import com.github.losevod.javatelegrambot.jtb.javarushclient.JavaRushGroupClient;
+import com.github.losevod.javatelegrambot.jtb.service.GroupSubService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,16 +13,20 @@ import org.mockito.Mockito;
 import java.util.Arrays;
 
 @DisplayName("Unit-level testing for CommandContainer")
-public class CommandContainerTest {
+class CommandContainerTest {
 
     private CommandContainer commandContainer;
 
     @BeforeEach
     public void init() {
-        //when-then
         SendBotMessageService sendBotMessageService = Mockito.mock(SendBotMessageService.class);
         TelegramUserService telegramUserService = Mockito.mock(TelegramUserService.class);
-        commandContainer = new CommandContainer(sendBotMessageService, telegramUserService);
+        GroupSubService groupSubService = Mockito.mock(GroupSubService.class);
+        JavaRushGroupClient javaRushGroupClient = Mockito.mock(JavaRushGroupClient.class);
+        commandContainer = new CommandContainer(sendBotMessageService,
+                telegramUserService,
+                javaRushGroupClient,
+                groupSubService);
     }
 
     @Test
