@@ -13,18 +13,20 @@ import org.mockito.Mockito;
 import java.util.Arrays;
 
 @DisplayName("Unit-level testing for CommandContainer")
-public class CommandContainerTest {
+class CommandContainerTest {
 
     private CommandContainer commandContainer;
 
     @BeforeEach
     public void init() {
-        //when-then
         SendBotMessageService sendBotMessageService = Mockito.mock(SendBotMessageService.class);
         TelegramUserService telegramUserService = Mockito.mock(TelegramUserService.class);
         GroupSubService groupSubService = Mockito.mock(GroupSubService.class);
         JavaRushGroupClient javaRushGroupClient = Mockito.mock(JavaRushGroupClient.class);
-        commandContainer = new CommandContainer(sendBotMessageService, telegramUserService, javaRushGroupClient, groupSubService);
+        commandContainer = new CommandContainer(sendBotMessageService,
+                telegramUserService,
+                javaRushGroupClient,
+                groupSubService);
     }
 
     @Test
