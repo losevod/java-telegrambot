@@ -1,5 +1,6 @@
 package com.github.losevod.javatelegrambot.jtb.command;
 
+import com.github.losevod.javatelegrambot.jtb.command.annotation.AdminCommand;
 import com.github.losevod.javatelegrambot.jtb.service.SendBotMessageService;
 import com.github.losevod.javatelegrambot.jtb.service.TelegramUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 /**
  * Statistics {@link Command}
  */
+@AdminCommand
 public class StatCommand implements Command{
 
     private final SendBotMessageService sendBotMessageService;
