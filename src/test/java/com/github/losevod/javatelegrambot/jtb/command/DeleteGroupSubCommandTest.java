@@ -44,20 +44,20 @@ public class DeleteGroupSubCommandTest {
         Mockito.when(telegramUserService.findByChatId(String.valueOf(chatId)))
                 .thenReturn(Optional.of(new TelegramUser()));
 
-        String expectedMessage = "Пока нет подписок на группы. Чтобы добавить подписку напиши /addGroupSub";
+        String expectedMessage = "Пока нет подписок на группы. Чтобы добавить подписку напиши /addgroupsub";
 
         //when
         command.execute(update);
 
         //then
-        Mockito.verify(sendBotMessageService).sendMessage(chatId.toString(), expectedMessage);
+        Mockito.verify(sendBotMessageService).sendMessage(chatId+"", expectedMessage);
     }
 
     @Test
     public void shouldRejectByInvalidGroupId() {
         //given
         Long chatId = 23456L;
-        Update update = prepareUpdate(chatId, String.format("%s %s", DELETE_GROUP_SUB.getCommandName()));
+        Update update = prepareUpdate(chatId, String.format("%s %s", DELETE_GROUP_SUB.getCommandName(), "groupSubId"));
         TelegramUser telegramUser = new TelegramUser();
         GroupSub gs1 = new GroupSub();
         gs1.setId(123);
