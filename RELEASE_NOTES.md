@@ -1,5 +1,11 @@
 # Release Notes 
 
+## 0.7.0-SNAPSHOT
+
+* JTB-4: added ability to send notifications about new articles
+* JTB-8: added ability to set inactive telegram user
+* JTB-9: added ability to set active user and/or start using it.
+
 ## 0.6.0-SNAPSHOT
 
 * JTB-7: added the ability to delete group subscription.
